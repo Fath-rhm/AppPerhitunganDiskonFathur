@@ -165,7 +165,6 @@ public class PerhitunganDiskonFrame extends javax.swing.JFrame {
 
         jSlider1.setMajorTickSpacing(10);
         jSlider1.setMaximum(50);
-        jSlider1.setMinorTickSpacing(5);
         jSlider1.setPaintLabels(true);
         jSlider1.setPaintTicks(true);
         jSlider1.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -301,6 +300,11 @@ public class PerhitunganDiskonFrame extends javax.swing.JFrame {
     jTextField2.setText(String.format("%.2f", hargaAkhir));
     jTextField3.setText(String.format("%.2f", jumlahHemat));
     
+    //tambahkan riwayat
+    String hasil = String.format("Harga: Rp%.0f | Total Diskon: %.0f%% | Akhir: Rp%.0f\n",
+        hargaAsli, totalDiskon, hargaAkhir
+    );
+    jTextArea1.append(hasil);
     
 } catch (NumberFormatException e) {
     javax.swing.JOptionPane.showMessageDialog(this, 
@@ -324,9 +328,7 @@ public class PerhitunganDiskonFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
-        // TODO add your handling code here:
-        //Membuat nilai otomatis terganti jika jSlide1 digeser 
-        jButton1ActionPerformed(null);
+      
     }//GEN-LAST:event_jSlider1StateChanged
 
     /**
