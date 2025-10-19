@@ -83,10 +83,15 @@ public class PerhitunganDiskonFrame extends javax.swing.JFrame {
 
         jComboBox1.setBackground(new java.awt.Color(0, 0, 0));
         jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "10%", "20%", "30%", "40%", "50%" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0%", "10%", "20%", "30%", "40%", "50%" }));
         jComboBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBox1ItemStateChanged(evt);
+            }
+        });
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
             }
         });
 
@@ -219,27 +224,27 @@ public class PerhitunganDiskonFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(164, 164, 164))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(32, 32, 32))))
+                        .addGap(25, 25, 25))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(66, 66, 66))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
@@ -263,8 +268,28 @@ public class PerhitunganDiskonFrame extends javax.swing.JFrame {
     String selected = (String) jComboBox1.getSelectedItem();
     double persenDiskon = Double.parseDouble(selected.replace("%", ""));
     
+    //Ambil diskon dari slider
+    int diskonSlider = jSlider1.getValue();
+    
+    //Ambil kode kupon
+    String kodeKupon = jTextField4.getText().trim();
+    double diskonKupon = 0;
+    
+    //Logika kode kupon tambahan
+    if (kodeKupon.equalsIgnoreCase("FATHURGANTENG123")){
+        diskonKupon = 10;
+    } else if (kodeKupon.equalsIgnoreCase("RAIDENSHOGUNMYBINI")){
+        diskonKupon = 5;
+    } else if (!kodeKupon.isEmpty()){
+        diskonKupon =  0;
+    }
+    
+    //Hitung total diskon
+    double totalDiskon = persenDiskon + diskonSlider + diskonKupon;
+    if(totalDiskon >80) totalDiskon = 80;//membataasi maksimal 80%
+    
     // Hitung penghematan dan harga akhir
-    double jumlahHemat = hargaAsli * persenDiskon / 100;
+    double jumlahHemat = hargaAsli * totalDiskon / 100;
     double hargaAkhir = hargaAsli - jumlahHemat;
     
     // Tampilkan hasil
@@ -288,6 +313,10 @@ public class PerhitunganDiskonFrame extends javax.swing.JFrame {
            jButton1ActionPerformed(null);
        }
     }//GEN-LAST:event_jComboBox1ItemStateChanged
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
