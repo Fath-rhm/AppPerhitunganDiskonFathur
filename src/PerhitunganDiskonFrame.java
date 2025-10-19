@@ -76,6 +76,11 @@ public class PerhitunganDiskonFrame extends javax.swing.JFrame {
         jComboBox1.setBackground(new java.awt.Color(0, 0, 0));
         jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "10%", "20%", "30%", "40%", "50%" }));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
 
         jButton1.setText("Hitung");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -195,6 +200,14 @@ public class PerhitunganDiskonFrame extends javax.swing.JFrame {
 }
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        // TODO add your handling code here:
+        //kalau pilihan diskon di combobox diganti akan otomatis mentrigger button hitung
+       if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED){
+           jButton1ActionPerformed(null);
+       }
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     /**
      * @param args the command line arguments
