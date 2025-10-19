@@ -168,6 +168,11 @@ public class PerhitunganDiskonFrame extends javax.swing.JFrame {
         jSlider1.setMinorTickSpacing(5);
         jSlider1.setPaintLabels(true);
         jSlider1.setPaintTicks(true);
+        jSlider1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSlider1StateChanged(evt);
+            }
+        });
 
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Riwayat Perhitungan");
@@ -317,6 +322,12 @@ public class PerhitunganDiskonFrame extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
+        // TODO add your handling code here:
+        //Membuat nilai otomatis terganti jika jSlide1 digeser 
+        jButton1ActionPerformed(null);
+    }//GEN-LAST:event_jSlider1StateChanged
 
     /**
      * @param args the command line arguments
